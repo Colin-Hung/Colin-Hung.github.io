@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colin Orz</title>
+    <style>
+        @import url("https://meyerweb.com/eric/tools/css/reset/reset.css");
+        /*
+         *reset css
+         */
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        #fp-slides {
+            height: 100%;
+            overflow: hidden;
+        }
+        #fp-slides_container {
+            transform: translateY(0);
+            transition: all 1s ease-in-out;
+            background: rgb(17,102,154);
+            background: linear-gradient(180deg, 
+                #7CD1FF 0%, 
+                #00448D 60%,
+                #00102D 90%,
+                #03194F 100%
+            );
+        }
+        .fp-slides_slide {
+            height: 100vh;
+        }
+
+        .fp-slides_slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 5rem;
+        }
+
+        input {
+            width: 300px;
+            height: 2.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        button {
+            width: 300px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    /*
+     * 看屁
+     */
+    <div id="fp-slides">
+        <div id="fp-slides_container">
+            <section class="fp-slides_slide">
+                <h1 class="title">電腦代碼</h1><br>
+                <input type="text" id="code">
+                  <button id="codeBtn">Submit</button>
+            </section>
+            <section class="fp-slides_slide">
+                <h1 class="title">密碼</h1><br>
+                <input type="password" id="password">
+                  <button id="passwordBtn">Submit</button>
+              </section>
+            <section class="fp-slides_slide">
+                <h1 class="title" style="color: #fff;"">釋放病毒</h1><br>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        var container = document.getElementById("fp-slides_container");
+        var slideLength = [];
+        var slideIndex = 0;
+        var timeout = 1100;
+        var isScrollable = true;
+
+        function getSlideLength() {
+            slideLength = document.getElementsByClassName("fp-slides_slide").length;
+        }
+
+        function freezeScroll() {
+            isScrollable = false;
+            setTimeout( function() {
+                isScrollable = true;
+            }, timeout);
+        }
+
+        function scrollToIndex(index) {
+            container.style.transform = `translateY(${-index * 100}vh)`;
+        }
+
+        getSlideLength();
+
+        /*
+        *
+        */
+        const code = document.getElementById("code");
+        const codeBtn = document.getElementById("codeBtn");
+
+        const password = document.getElementById("password");
+        const passwordBtn = document.getElementById("passwordBtn");
+
+        codeBtn.addEventListener("click", () => {
+        if (code.value == "20231029") {
+            scrollToIndex(++slideIndex);
+        } else {
+            alert("WRONG");
+        }
+        });
+
+        passwordBtn.addEventListener("click", () => {
+        if (password.value == "320210") {
+            scrollToIndex(++slideIndex);
+        } else {
+            alert("WRONG");
+        }
+        });
+        // window.addEventListener('keydown', function(event) {
+        //   if (event.keyCode === 32) {
+        //     scrollToIndex(--slideIndex);
+        //   }
+        // });
+    </script>
+</body>
+</html>
